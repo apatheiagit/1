@@ -5,11 +5,11 @@ class Pokemon {
 		this.level = level;
 	}
 	show(){
-		console.log("%s - покемон %d уровня", this.name, this.level);
+		console.log('%s - покемон %d уровня', this.name, this.level);
 	}
-	/*valueOf(){
+	valueOf(){
 		return this.level;
-	}*/
+	}
 };
 class PokemonList extends Array {
 	constructor(...Pokemons){
@@ -21,44 +21,34 @@ class PokemonList extends Array {
 	}
 	show(){
 		for (let pokemon of this){
-			console.log("%s - покемон %d уровня", pokemon.name, pokemon.level);
+			console.log('%s - покемон %d уровня', pokemon.name, pokemon.level);
 		}
-		console.log("Общее количество покемонов: %d", this.length);
+		console.log('Общее количество покемонов: %d', this.length);
 	}
 	max(){
-		//return Math.max.apply(null, this);
-		return Math.max.apply(Math, this.map( function (el) {return el.level} ));
+		return Math.max.apply(null, this);
+		//return Math.max.apply(Math, this.map( function (el) {return el.level} ));
 	}
 }
-let myPokemon = new Pokemon("Пикачу", 80);
-myPokemon.show();
-let myPokemon2 = new Pokemon("Чармандер", 2);
-myPokemon2.show();
-
-let myPokeArray = new PokemonList( myPokemon, myPokemon2 );
-myPokeArray[0].show();
-
-myPokeArray.add('Тест', 5);
-myPokeArray[2].show();
 
 let lost = new PokemonList(), found = new PokemonList();
-lost.add('Lost1', 1);
-lost.add('Lost2', 2);
-lost.add('Lost3', 3);
-lost.add('Lost4', 4);
-//console.log(lost);
-found.add('Found1', 4);
-found.add('Found2', 2);
-found.add('Found3', 3);
 
-lost.show();
-found.show();
+lost.add('Пикачу', 56);
+lost.add('Чармандер', 20);
+lost.add('Сквиртл', 31);
+lost.add('Мисти', 14);
 
-//found.add(lost[0].name, lost[0].level);
+found.add('Джесси', 45);
+found.add('Джеймс', 27);
+found.add('Мяут', 33);
+
 found.push(lost[0]);
 lost.splice(0,1);
 
+console.log('Покемоны из списка lost:');
 lost.show();
+console.log('\nПокемоны из списка found:');
 found.show();
 
-console.log("Max el ", myPokeArray.max());
+console.log('\nМаксимальный уроверь в списке lost: ', lost.max());
+console.log('Максимальный уроверь в списке found: ', found.max());
