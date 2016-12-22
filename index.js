@@ -21,13 +21,15 @@ class PokemonList extends Array {
 	}
 	show(){
 		for (let pokemon of this){
-			console.log('%s - покемон %d уровня', pokemon.name, pokemon.level);
+			pokemon.show();
 		}
 		console.log('Общее количество покемонов: %d', this.length);
 	}
 	max(){
-		return Math.max.apply(null, this);
-		//return Math.max.apply(Math, this.map( function (el) {return el.level} ));
+		this.sort(function(a, b) {
+		  return b.level - a.level;
+		});
+		return this[0];
 	}
 }
 
@@ -50,5 +52,5 @@ lost.show();
 console.log('\nПокемоны из списка found:');
 found.show();
 
-console.log('\nМаксимальный уроверь в списке lost: ', lost.max());
-console.log('Максимальный уроверь в списке found: ', found.max());
+console.log('\nПокемон максимального уровня в списке lost: %s, уровень - %d', lost.max().name, lost.max().level);
+console.log('Покемон максимального уровня в списке found: %s, уровень - %d', found.max().name, found.max().level);
